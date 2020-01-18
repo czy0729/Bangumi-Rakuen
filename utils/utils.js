@@ -2,7 +2,7 @@
  * @Author: czy0729
  * @Date: 2020-01-14 19:30:18
  * @Last Modified by: czy0729
- * @Last Modified time: 2020-01-17 15:29:55
+ * @Last Modified time: 2020-01-17 21:22:17
  */
 const cheerioRN = require('cheerio-without-node-native')
 
@@ -106,6 +106,28 @@ function trim(str = '') {
   return str.replace(/^\s+|\s+$/gm, '')
 }
 
+var I64BIT_TABLE = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-'.split(
+  ''
+)
+function hash(input) {
+  var hash = 5381
+  var i = input.length - 1
+
+  if (typeof input == 'string') {
+    for (; i > -1; i--) hash += (hash << 5) + input.charCodeAt(i)
+  } else {
+    for (; i > -1; i--) hash += (hash << 5) + input[i]
+  }
+  var value = hash & 0x7fffffff
+
+  var retValue = ''
+  do {
+    retValue += I64BIT_TABLE[value & 0x3f]
+  } while ((value >>= 6))
+
+  return retValue
+}
+
 module.exports = {
   safeObject,
   getCoverSmall,
@@ -117,5 +139,6 @@ module.exports = {
   getTimestamp,
   smallImage,
   HTMLTrim,
-  trim
+  trim,
+  hash
 }
