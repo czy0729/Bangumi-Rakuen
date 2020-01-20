@@ -2,7 +2,7 @@
  * @Author: czy0729
  * @Date: 2020-01-14 18:51:27
  * @Last Modified by: czy0729
- * @Last Modified time: 2020-01-18 11:23:42
+ * @Last Modified time: 2020-01-20 17:37:13
  */
 const axios = require('axios')
 const fs = require('fs')
@@ -47,14 +47,18 @@ function fetchSubject(id) {
       fs.mkdirSync(dirPathComment)
     }
     fs.writeFileSync(filePathComment, utils.safeStringify(data.comments))
-    
+
     console.log(`- writing ${id}.json`)
     return resolve(true)
   })
 }
 
 const start = 350000
-const end = 354250
+const end = 354300
+
+// const start = 345000
+// const end = 350000
+
 const fetchs = []
 for (let i = start; i <= end; i++) {
   fetchs.push(() => fetchSubject(i))
