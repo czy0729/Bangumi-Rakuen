@@ -2,7 +2,7 @@
  * @Author: czy0729
  * @Date: 2020-01-14 18:51:27
  * @Last Modified by: czy0729
- * @Last Modified time: 2020-02-02 05:10:07
+ * @Last Modified time: 2020-02-03 20:33:09
  */
 const axios = require('axios')
 const fs = require('fs')
@@ -10,12 +10,17 @@ const path = require('path')
 const cheerio = require('./utils/cheerio')
 const utils = require('./utils/utils')
 
+const rewrite = true
+
 function fetchSubject(id) {
   return new Promise(async (resolve, reject) => {
     const filePathTopic = `./data/topic/${Math.floor(id / 100)}/${id}.json`
     const filePathComment = `./data/comment/${Math.floor(id / 100)}/${id}.json`
     const filePathOmit = `./data/omit/${Math.floor(id / 100)}/${id}.json`
-    if (fs.existsSync(filePathTopic) || fs.existsSync(filePathOmit)) {
+    if (
+      !rewrite &&
+      (fs.existsSync(filePathTopic) || fs.existsSync(filePathOmit))
+    ) {
       // console.log(`- skip ${id}.json [${index}]`)
       return resolve(true)
     }
@@ -53,11 +58,11 @@ function fetchSubject(id) {
   })
 }
 
-// const start = 350000
-// const end = 355000
+const start = 350000
+const end = 355000
 
-const start = 330000
-const end = 335000
+// const start = 330000
+// const end = 335000
 
 const fetchs = []
 for (let i = start; i <= end; i++) {
