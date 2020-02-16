@@ -7,6 +7,7 @@ android/
 bangumi.jks
 bangumi.mobileprovision
 data/omit/
+data/comment/
 dist/
 iPhoneDistribution.p12
 ios/
