@@ -2,7 +2,7 @@
  * @Author: czy0729
  * @Date: 2020-01-14 18:51:27
  * @Last Modified by: czy0729
- * @Last Modified time: 2020-03-23 01:15:53
+ * @Last Modified time: 2020-03-31 09:38:14
  */
 const axios = require('axios')
 const fs = require('fs')
@@ -58,14 +58,14 @@ function fetchSubject(id) {
   })
 }
 
-const start = 355200
+const start = 355300
 const end = 355700
 
-// const start = 330000
-// const end = 335000
+// const start = 325000
+// const end = 330000
 
 const fetchs = []
 for (let i = start; i <= end; i++) {
   fetchs.push(() => fetchSubject(i))
 }
-utils.queue(fetchs, 4)
+utils.queue(fetchs, 8)
