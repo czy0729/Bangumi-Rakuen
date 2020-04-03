@@ -2,7 +2,7 @@
  * @Author: czy0729
  * @Date: 2020-01-14 18:51:27
  * @Last Modified by: czy0729
- * @Last Modified time: 2020-03-31 09:38:14
+ * @Last Modified time: 2020-04-04 01:22:21
  */
 const axios = require('axios')
 const fs = require('fs')
@@ -58,8 +58,8 @@ function fetchSubject(id) {
   })
 }
 
-const start = 355300
-const end = 355700
+const start = 355500
+const end = 355800
 
 // const start = 325000
 // const end = 330000
