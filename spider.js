@@ -2,7 +2,7 @@
  * @Author: czy0729
  * @Date: 2020-01-14 18:51:27
  * @Last Modified by: czy0729
- * @Last Modified time: 2020-04-04 01:22:21
+ * @Last Modified time: 2020-04-16 19:44:36
  */
 const axios = require('axios')
 const fs = require('fs')
@@ -26,7 +26,7 @@ function fetchSubject(id) {
     }
 
     const { data: html } = await axios({
-      url: `https://bgm.tv/group/topic/${id}`
+      url: `https://bgm.tv/group/topic/${id}`,
     })
     const data = cheerio.cheerioMono(html)
     if (!data.topic.floor) {
@@ -58,8 +58,8 @@ function fetchSubject(id) {
   })
 }
 
-const start = 355500
-const end = 355800
+const start = 355600
+const end = 356000
 
 // const start = 325000
 // const end = 330000
