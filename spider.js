@@ -2,7 +2,7 @@
  * @Author: czy0729
  * @Date: 2020-01-14 18:51:27
  * @Last Modified by: czy0729
- * @Last Modified time: 2020-04-16 19:44:36
+ * @Last Modified time: 2020-05-02 15:32:41
  */
 const axios = require('axios')
 const fs = require('fs')
@@ -53,13 +53,13 @@ function fetchSubject(id) {
     }
     fs.writeFileSync(filePathComment, utils.safeStringify(data.comments))
 
-    console.log(`- writing ${id}.json`)
+    console.log(`- writing ${id}.json`, data.topic.title)
     return resolve(true)
   })
 }
 
-const start = 355600
-const end = 356000
+const start = 355800
+const end = 356400
 
 // const start = 325000
 // const end = 330000
