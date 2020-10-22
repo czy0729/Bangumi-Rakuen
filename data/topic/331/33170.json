@@ -1,0 +1,1 @@
+{"id":33170,"avatar":"//lain.bgm.tv/pic/user/m/icon.jpg","floor":"#1","group":"BUG 追踪","groupHref":"/group/issues","groupThumb":"//lain.bgm.tv/pic/icon/m/000/00/04/433.jpg","message":"新用户注册的时候墙内访问的话，由于验证码用的是google recaptcha api被墙，所以不能显示。然后新用户就无法注册？ ","time":"2014-7-2 14:10","title":"新用户注册不显示验证码...","userId":"xuxun","userName":"清风迅来","userSign":""}

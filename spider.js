@@ -2,7 +2,7 @@
  * @Author: czy0729
  * @Date: 2020-01-14 18:51:27
  * @Last Modified by: czy0729
- * @Last Modified time: 2020-10-18 19:36:55
+ * @Last Modified time: 2020-10-22 10:22:31
  */
 const axios = require('axios')
 const fs = require('fs')
@@ -10,7 +10,7 @@ const path = require('path')
 const cheerio = require('./utils/cheerio')
 const utils = require('./utils/utils')
 
-const rewrite = true
+const rewrite = false
 
 function fetchSubject(id) {
   return new Promise(async (resolve, reject) => {
@@ -21,7 +21,6 @@ function fetchSubject(id) {
       !rewrite &&
       (fs.existsSync(filePathTopic) || fs.existsSync(filePathOmit))
     ) {
-      // console.log(`- skip ${id}.json [${index}]`)
       return resolve(true)
     }
 
@@ -45,7 +44,13 @@ function fetchSubject(id) {
     if (!fs.existsSync(dirPathTopic)) {
       fs.mkdirSync(dirPathTopic)
     }
-    fs.writeFileSync(filePathTopic, utils.safeStringify(data.topic))
+    fs.writeFileSync(
+      filePathTopic,
+      utils.safeStringify({
+        id,
+        ...data.topic,
+      })
+    )
 
     const dirPathComment = path.dirname(filePathComment)
     if (!fs.existsSync(dirPathComment)) {
@@ -53,19 +58,16 @@ function fetchSubject(id) {
     }
     fs.writeFileSync(filePathComment, utils.safeStringify(data.comments))
 
-    console.log(`- writing ${id}.json`, data.topic.title)
+    console.log(`- writing ${id}.json`, data.topic.time, data.topic.title)
     return resolve(true)
   })
 }
 
-const start = 359300
-const end = 359600
-
-// const start = 325000
-// const end = 330000
+const start = 359540 // 315000
+const end = 359540 // 359540
 
 const fetchs = []
-for (let i = start; i <= end; i++) {
+for (let i = start; i <= end; i += 1) {
   fetchs.push(() => fetchSubject(i))
 }
 utils.queue(fetchs, 8)
