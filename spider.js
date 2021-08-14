@@ -2,7 +2,7 @@
  * @Author: czy0729
  * @Date: 2020-01-14 18:51:27
  * @Last Modified by: czy0729
- * @Last Modified time: 2021-07-18 11:55:23
+ * @Last Modified time: 2021-08-14 15:32:07
  */
 const axios = require('axios')
 const fs = require('fs')
@@ -12,7 +12,7 @@ const utils = require('./utils/utils')
 
 const rewrite = true
 const start = 363960
-const end = 364400
+const end = 365000
 
 function fetchSubject(id) {
   return new Promise(async (resolve, reject) => {
