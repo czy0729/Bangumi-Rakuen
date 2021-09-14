@@ -2,7 +2,7 @@
  * @Author: czy0729
  * @Date: 2020-01-14 18:51:27
  * @Last Modified by: czy0729
- * @Last Modified time: 2021-08-21 10:56:14
+ * @Last Modified time: 2021-09-15 03:38:21
  */
 const axios = require('axios')
 const fs = require('fs')
@@ -11,8 +11,8 @@ const cheerio = require('./utils/cheerio')
 const utils = require('./utils/utils')
 
 const rewrite = true
-const start = 364500
-const end = 365000
+const start = 364900
+const end = 365500
 
 function fetchSubject(id) {
   return new Promise(async (resolve, reject) => {
