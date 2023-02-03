@@ -2,7 +2,7 @@
  * @Author: czy0729
  * @Date: 2020-01-14 18:51:27
  * @Last Modified by: czy0729
- * @Last Modified time: 2022-09-12 17:19:08
+ * @Last Modified time: 2023-02-03 07:57:41
  */
 const axios = require('axios')
 const fs = require('fs')
@@ -12,7 +12,7 @@ const utils = require('./utils/utils')
 
 const rewrite = true
 const start = 372900
-const end = 373300
+const end = 377700
 
 function fetchSubject(id) {
   return new Promise(async (resolve, reject) => {
@@ -69,4 +69,4 @@ const fetchs = []
 for (let i = start; i <= end; i += 1) {
   fetchs.push(() => fetchSubject(i))
 }
-utils.queue(fetchs, 8)
+utils.queue(fetchs, 4)
