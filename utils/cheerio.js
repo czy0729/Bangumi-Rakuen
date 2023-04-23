@@ -2,7 +2,7 @@
  * @Author: czy0729
  * @Date: 2020-01-14 19:30:54
  * @Last Modified by: czy0729
- * @Last Modified time: 2020-01-17 16:01:23
+ * @Last Modified time: 2023-04-23 17:37:37
  */
 const utils = require('./utils')
 const match = require('./match')
@@ -46,7 +46,7 @@ function cheerioMono(HTML) {
     // 主楼
     const $group = $('#pageHeader a.avatar')
     const $user = $('div.postTopic strong > a.l')
-    const [floor, time] = ($('div.postTopic div.re_info > small').text() || '')
+    const [floor, time] = ($('div.postTopic div.re_info small').text() || '')
       .split('/')[0]
       .split(' - ')
     const titleText = $('#pageHeader > h1').text() || ''
@@ -81,7 +81,7 @@ function cheerioMono(HTML) {
           const $row = utils.cheerio(element)
 
           const [floor, time] = (
-            $row.find('> div.re_info > small').text() || ''
+            $row.find('> div.re_info small').text() || ''
           )
             .split('/')[0] // 这里其实为了去除 / del / edit
             .split(' - ')
