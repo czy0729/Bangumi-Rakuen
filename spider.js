@@ -2,7 +2,7 @@
  * @Author: czy0729
  * @Date: 2020-01-14 18:51:27
  * @Last Modified by: czy0729
- * @Last Modified time: 2023-04-23 21:11:09
+ * @Last Modified time: 2023-05-16 15:25:02
  */
 const axios = require('axios')
 const fs = require('fs')
@@ -10,63 +10,69 @@ const path = require('path')
 const cheerio = require('./utils/cheerio')
 const utils = require('./utils/utils')
 
-const rewrite = false
-const start = 372900
-const end = 380800
+const rewrite = true
+const start = 0
+const end = 381900
 
-function fetchSubject(id) {
+function fetchTopic(id) {
   return new Promise(async (resolve, reject) => {
-    const filePathTopic = `./data/topic/${Math.floor(id / 100)}/${id}.json`
-    const filePathComment = `./data/comment/${Math.floor(id / 100)}/${id}.json`
-    const filePathOmit = `./data/omit/${Math.floor(id / 100)}/${id}.json`
-    if (
-      !rewrite &&
-      (fs.existsSync(filePathTopic) || fs.existsSync(filePathOmit))
-    ) {
-      return resolve(true)
-    }
-
-    const { data: html } = await axios({
-      url: `https://bgm.tv/group/topic/${id}`,
-    })
-    const data = cheerio.cheerioMono(html)
-    if (!data.topic.floor) {
-      console.log(`- skip ${id}.json`)
-
-      const dirPathOmit = path.dirname(filePathOmit)
-      if (!fs.existsSync(dirPathOmit)) {
-        fs.mkdirSync(dirPathOmit)
+    try {
+      const filePathTopic = `./data/topic/${Math.floor(id / 100)}/${id}.json`
+      const filePathComment = `./data/comment/${Math.floor(
+        id / 100
+      )}/${id}.json`
+      const filePathOmit = `./data/omit/${Math.floor(id / 100)}/${id}.json`
+      if (
+        !rewrite &&
+        (fs.existsSync(filePathTopic) || fs.existsSync(filePathOmit))
+      ) {
+        return resolve(true)
       }
-      fs.writeFileSync(`./data/omit/${Math.floor(id / 100)}/${id}.json`, '')
+
+      const { data: html } = await axios({
+        url: `https://bgm.tv/group/topic/${id}`,
+      })
+      const data = cheerio.cheerioMono(html)
+      if (!data.topic.floor) {
+        console.log(`- skip ${id}.json`)
+
+        const dirPathOmit = path.dirname(filePathOmit)
+        if (!fs.existsSync(dirPathOmit)) {
+          fs.mkdirSync(dirPathOmit)
+        }
+        fs.writeFileSync(`./data/omit/${Math.floor(id / 100)}/${id}.json`, '')
+        return resolve(true)
+      }
+      data._loaded = utils.getTimestamp()
+
+      const dirPathTopic = path.dirname(filePathTopic)
+      if (!fs.existsSync(dirPathTopic)) {
+        fs.mkdirSync(dirPathTopic)
+      }
+      fs.writeFileSync(
+        filePathTopic,
+        utils.safeStringify({
+          id,
+          ...data.topic,
+        })
+      )
+
+      const dirPathComment = path.dirname(filePathComment)
+      if (!fs.existsSync(dirPathComment)) {
+        fs.mkdirSync(dirPathComment)
+      }
+      fs.writeFileSync(filePathComment, utils.safeStringify(data.comments))
+
+      console.log(`- writing ${id}.json`, data.topic.time, data.topic.title)
+      return resolve(true)
+    } catch (error) {
       return resolve(true)
     }
-    data._loaded = utils.getTimestamp()
-
-    const dirPathTopic = path.dirname(filePathTopic)
-    if (!fs.existsSync(dirPathTopic)) {
-      fs.mkdirSync(dirPathTopic)
-    }
-    fs.writeFileSync(
-      filePathTopic,
-      utils.safeStringify({
-        id,
-        ...data.topic,
-      })
-    )
-
-    const dirPathComment = path.dirname(filePathComment)
-    if (!fs.existsSync(dirPathComment)) {
-      fs.mkdirSync(dirPathComment)
-    }
-    fs.writeFileSync(filePathComment, utils.safeStringify(data.comments))
-
-    console.log(`- writing ${id}.json`, data.topic.time, data.topic.title)
-    return resolve(true)
   })
 }
 
 const fetchs = []
-for (let i = start; i <= end; i += 1) {
-  fetchs.push(() => fetchSubject(i))
+for (let i = end; i >= start; i -= 1) {
+  fetchs.push(() => fetchTopic(i))
 }
 utils.queue(fetchs, 4)
