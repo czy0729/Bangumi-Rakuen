@@ -2,7 +2,7 @@
  * @Author: czy0729
  * @Date: 2022-02-23 17:49:01
  * @Last Modified by: czy0729
- * @Last Modified time: 2022-02-23 18:35:13
+ * @Last Modified time: 2023-10-17 05:45:13
  */
 const axios = require('axios')
 const fs = require('fs')
@@ -13,11 +13,11 @@ const utils = require('./utils/utils')
 // document.cookie
 const headers = {
   'User-Agent':
-    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36',
+    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36',
   Cookie:
-    'chii_sec_id=pG5Jgrb5v3PhSnN%2B9S%2Bj0sTJQGDkbMC5jU2SCGE; chii_cookietime=2592000; chii_theme_choose=1; chii_theme=dark; prg_display_mode=normal; __utmz=1.1644620219.525.11.utmcsr=github.com|utmccn=(referral)|utmcmd=referral|utmcct=/czy0729/Bangumi/issues/44; chii_auth=GExWOvrUsXJzNDnFu0XLieYk3OUAXsZgk7c5AFhIs42YOXdVOgQxGJzFAODFEChN83SPOw%2Fmvt7OisRb93jy55qq1sHG8%2BCrE%2BET; chii_sid=2Y29L9; __utma=1.1636245540.1617210056.1645583134.1645609472.536; __utmc=1; __utmt=1; __utmb=1.45.10.1645609472',
+    '_ga=GA1.1.2037657089.1675671081; prg_list_mode=full; 2592000; chii_sec_id=zrBpW0j9%2FooIhKrPSOelBNSRRgVU9C0VfT0ssw4; chii_cookietime=2592000; chii_theme_choose=1; chii_theme=dark; __utmz=1.1695325443.4926.51.utmcsr=tongji.baidu.com|utmccn=(referral)|utmcmd=referral|utmcct=/; _ga_1109JLGMHN=deleted; chii_auth=FtYek6s8j%2FgmQZyD7QjbwBhe6nSwO1a%2BGnf8XivuU95ueOgAAKcyPKIVUMSkBze0vrqFp22HMoqCnAVyxD8zTleOXsbYbzrnybql; prg_display_mode=normal; __utmc=1; chii_sid=KCh9lH; __utma=1.825736922.1638495774.1697488348.1697492591.5129; __utmt=1; __utmb=1.1.10.1697492591; _ga_1109JLGMHN=GS1.1.1697492591.2025.0.1697492591.0.0.0',
 }
-const page = 107
+const page = 124
 const data = []
 
 async function fetchGroup() {
