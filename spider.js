@@ -2,7 +2,7 @@
  * @Author: czy0729
  * @Date: 2020-01-14 18:51:27
  * @Last Modified by: czy0729
- * @Last Modified time: 2023-05-16 15:25:02
+ * @Last Modified time: 2023-10-17 05:34:24
  */
 const axios = require('axios')
 const fs = require('fs')
@@ -10,9 +10,15 @@ const path = require('path')
 const cheerio = require('./utils/cheerio')
 const utils = require('./utils/utils')
 
-const rewrite = true
-const start = 0
-const end = 381900
+const rewrite = false
+const start = 381500
+const end = 388700
+
+const fetchs = []
+for (let i = end; i >= start; i -= 1) {
+  fetchs.push(() => fetchTopic(i))
+}
+utils.queue(fetchs, 4)
 
 function fetchTopic(id) {
   return new Promise(async (resolve, reject) => {
@@ -70,9 +76,3 @@ function fetchTopic(id) {
     }
   })
 }
-
-const fetchs = []
-for (let i = end; i >= start; i -= 1) {
-  fetchs.push(() => fetchTopic(i))
-}
-utils.queue(fetchs, 4)
