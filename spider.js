@@ -2,7 +2,7 @@
  * @Author: czy0729
  * @Date: 2020-01-14 18:51:27
  * @Last Modified by: czy0729
- * @Last Modified time: 2023-10-17 05:34:24
+ * @Last Modified time: 2024-01-10 16:49:37
  */
 const axios = require('axios')
 const fs = require('fs')
@@ -10,12 +10,12 @@ const path = require('path')
 const cheerio = require('./utils/cheerio')
 const utils = require('./utils/utils')
 
-const rewrite = false
-const start = 381500
-const end = 388700
+const rewrite = true
+const start = 385000
+const end = 392400
 
 const fetchs = []
-for (let i = end; i >= start; i -= 1) {
+for (let i = start; i < end; i += 1) {
   fetchs.push(() => fetchTopic(i))
 }
 utils.queue(fetchs, 4)
@@ -36,7 +36,7 @@ function fetchTopic(id) {
       }
 
       const { data: html } = await axios({
-        url: `https://bgm.tv/group/topic/${id}`,
+        url: `https://chii.in/group/topic/${id}`,
       })
       const data = cheerio.cheerioMono(html)
       if (!data.topic.floor) {
@@ -72,6 +72,7 @@ function fetchTopic(id) {
       console.log(`- writing ${id}.json`, data.topic.time, data.topic.title)
       return resolve(true)
     } catch (error) {
+      console.log(error)
       return resolve(true)
     }
   })
