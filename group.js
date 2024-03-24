@@ -2,7 +2,7 @@
  * @Author: czy0729
  * @Date: 2022-02-23 17:49:01
  * @Last Modified by: czy0729
- * @Last Modified time: 2023-10-17 05:45:13
+ * @Last Modified time: 2024-03-24 23:21:20
  */
 const axios = require('axios')
 const fs = require('fs')
@@ -13,11 +13,11 @@ const utils = require('./utils/utils')
 // document.cookie
 const headers = {
   'User-Agent':
-    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36',
+    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
   Cookie:
-    '_ga=GA1.1.2037657089.1675671081; prg_list_mode=full; 2592000; chii_sec_id=zrBpW0j9%2FooIhKrPSOelBNSRRgVU9C0VfT0ssw4; chii_cookietime=2592000; chii_theme_choose=1; chii_theme=dark; __utmz=1.1695325443.4926.51.utmcsr=tongji.baidu.com|utmccn=(referral)|utmcmd=referral|utmcct=/; _ga_1109JLGMHN=deleted; chii_auth=FtYek6s8j%2FgmQZyD7QjbwBhe6nSwO1a%2BGnf8XivuU95ueOgAAKcyPKIVUMSkBze0vrqFp22HMoqCnAVyxD8zTleOXsbYbzrnybql; prg_display_mode=normal; __utmc=1; chii_sid=KCh9lH; __utma=1.825736922.1638495774.1697488348.1697492591.5129; __utmt=1; __utmb=1.1.10.1697492591; _ga_1109JLGMHN=GS1.1.1697492591.2025.0.1697492591.0.0.0',
+    '_ga=GA1.1.2037657089.1675671081; prg_list_mode=full; 2592000; chii_sec_id=zrBpW0j9%2FooIhKrPSOelBNSRRgVU9C0VfT0ssw4; chii_cookietime=2592000; chii_theme_choose=1; chii_theme=dark; _ga_1109JLGMHN=deleted; prg_display_mode=normal; __utmz=1.1706236694.5980.82.utmcsr=github.com|utmccn=(referral)|utmcmd=referral|utmcct=/czy0729/Bangumi/issues/136; __utma=1.825736922.1638495774.1707805909.1708659320.6144; _ga_1109JLGMHN=GS1.1.1708659320.3003.1.1708659748.0.0.0; chii_auth=1rkGdUk1DxDRMiWv9Bb1GW6znbr%2BiNPc7UvOF7RF1n78ly31UyAasEhhNFOOaIjW6WmDBhKiazWJMYM8hTwWeYdAL0zy36fg%2BPog; chii_sid=taB5cT',
 }
-const page = 124
+const page = 129
 const data = []
 
 async function fetchGroup() {

@@ -2,7 +2,7 @@
  * @Author: czy0729
  * @Date: 2020-01-14 18:51:27
  * @Last Modified by: czy0729
- * @Last Modified time: 2024-01-10 16:49:37
+ * @Last Modified time: 2024-03-24 23:05:48
  */
 const axios = require('axios')
 const fs = require('fs')
@@ -11,8 +11,8 @@ const cheerio = require('./utils/cheerio')
 const utils = require('./utils/utils')
 
 const rewrite = true
-const start = 385000
-const end = 392400
+const start = 395088
+const end = 395550
 
 const fetchs = []
 for (let i = start; i < end; i += 1) {
