@@ -1,0 +1,1 @@
+{"id":410883,"avatar":"//lain.bgm.tv/pic/user/m/000/82/73/827326.jpg","floor":"#1","group":"BUG 追踪","groupHref":"/group/issues","groupThumb":"//lain.bgm.tv/pic/icon/m/000/00/04/433.jpg","message":"测试短信功能发信时常见大一些emoji在编辑时可以正常显示，但发出后两端显示都是问号<br>可能对所有emoji都存在","time":"2024-12-1 22:02","title":"疑似bug 短信不支持emoji符号","userId":"827326","userName":"whatever","userSign":"(只有好友才会去看签名？)"}
